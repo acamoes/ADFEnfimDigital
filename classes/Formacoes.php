@@ -23,7 +23,7 @@ class Formacoes
 
     function getTabs()
     {
-        $this->tabs = json_decode('{"tabs":[{"text":"Inscritos","tab":"inscritos"},{"text":"Equipa","tab":"equipa"},{"text":"Sessões","tab":"sessoes"},{"text":"Ficheiros","tab":"ficheiros"},{"text":"Avaliações","tab":"avaliacoes"},{"text":"Relatórios","tab":"relatorios"},{"text":"Informações","tab":"informacoes"}]}');
+        $this->tabs = json_decode('{"tabs":[{"text":"Inscritos","tab":"inscritos"},{"text":"Equipa","tab":"equipa"},{"text":"Sessões","tab":"sessoes"},{"text":"Ficheiros","tab":"ficheiros"},{"text":"Avaliações","tab":"avaliacoes"},{"text":"Relatórios","tab":"relatorios"},{"text":"Informações","tab":"informacoes"},{"text":"Tutorias","tab":"tutorias"}]}');
     }
     
     function getServicosCentraisTabs()
@@ -379,6 +379,29 @@ class Formacoes
             return ['success' => false, 'message' => 'Não foi apagar o registo.'];
         }
         return ['success' => true, 'message' => 'Registo apagado.'];
+    }
+
+    
+    public static function getFormacoesTutorias($data)
+    { // var_dump($data);exit();
+        // $query     = "SELECT c.idCourses,c.course,c.status as cStatus, "."ct.*, ".
+        //     "u.aepId,u.name,u.birthDate,u.mobile,u.email,u.status as uStatus ".
+        //     " FROM "."courses c INNER JOIN courses_team ct ON c.idCourses=ct.idCourses "."INNER JOIN users u ON ct.idUsers=u.idUsers ".
+        //     (key_exists("idCourse", $data) ? "AND c.idCourse=".$data ['idCourse']." "
+        //         : " ").
+        //     (key_exists("idCourses", $data) ? "AND ct.idCourses=".$data ['idCourses']." "
+        //         : " ").
+        //     (key_exists("idUsers", $data) ? "AND ct.idUsers=".$data ['idUsers']." "
+        //         : " ").
+        //     (key_exists("search", $data) ? "AND (u.name LIKE '%".$data ['search']."%' OR
+		// 			u.aepId LIKE '%".$data ['search']."%' OR
+		// 			u.email LIKE '%".$data ['search']."%')" : " ")." ORDER BY u.aepId";
+        // $con       = new Database();
+        // $resultado = $con->get($query);
+        // if (!$resultado) {
+        //     return false;
+        // }
+        // return $resultado;
     }
 
     public static function getSessoes($data)

@@ -23,6 +23,7 @@ $loader->add('Documentos', ENFIM_DIR.'classes/');
 $loader->add('Calendarios', ENFIM_DIR.'classes/');
 $loader->add('Avaliacoes', ENFIM_DIR.'classes/');
 $loader->add('Formacoes', ENFIM_DIR.'classes/');
+$loader->add('Tutorias', ENFIM_DIR.'classes/');
 
 // smarty configuration
 class Enfim_Smarty extends Smarty

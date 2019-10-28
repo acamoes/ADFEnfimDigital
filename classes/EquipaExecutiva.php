@@ -17,6 +17,8 @@ class EquipaExecutiva
     public $formacoes;
     public $avaliacoes;
     public $contexto;
+    public $tutorias;
+
 
     public function __construct($data)
     {
@@ -29,6 +31,10 @@ class EquipaExecutiva
         $this->calendarios  = $this->getCalendarios($data);
         $this->formacoes    = $this->getFormacoes($data);
         $this->avaliacoes   = $this->getAvaliacoes($data);
+        $this->tutorias   = $this->getTutorias($data);
+
+
+
         if (key_exists("idCourses", $data)) {
             $this->contexto['formacoes']['inscritos']   = $this->getInscritos($data);
             $this->contexto['formacoes']['equipa']      = $this->getEquipa($data);
@@ -37,6 +43,7 @@ class EquipaExecutiva
             $this->contexto['formacoes']['avaliacoes']  = $this->getFormacoesAvaliacoes($data);
             $this->contexto['formacoes']['relatorios']  = $this->getRelatorioAvaliacoes($data);
             $this->contexto['formacoes']['informacoes'] = $this->getFormacoesInformacoes($data);
+            $this->contexto['formacoes']['tutorias'] = $this->getFormacoesInformacoes($data);
         } else {
             $this->contexto['formacoes']['inscritos']   = array();
             $this->contexto['formacoes']['equipa']      = array();
@@ -45,6 +52,7 @@ class EquipaExecutiva
             $this->contexto['formacoes']['avaliacoes']  = array();
             $this->contexto['formacoes']['relatorios']  = array();
             $this->contexto['formacoes']['informacoes'] = array();
+            $this->contexto['formacoes']['tutorias'] = array();
         }
     }
 
@@ -66,6 +74,11 @@ class EquipaExecutiva
     public function getModulos($data)
     {
         return Modulos::getModulos($data);
+    }
+
+    public function getTutorias($data)
+    {
+        return Tutorias::getTutorias($data);
     }
 
     public function getRequisito($data)
@@ -476,6 +489,11 @@ class EquipaExecutiva
     public function getFormacoesInformacoes($data)
     {
         return Formacoes::getFormacoesInformacoes($data);
+    }
+
+    public function getFormacoesTutorias($data)
+    {
+        return Formacoes::getFormacoesTutorias($data);
     }
 
     public function apagarFormacoesInformacoes($data)

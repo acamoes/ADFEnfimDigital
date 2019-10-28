@@ -37,42 +37,54 @@ class Tutorias
    
     public static function getTutorias($data)
     {
-        $query = "
-        SELECT * FROM (
-            SELECT * FROM 
-             (
-                 SELECT idMentoring, idCourse, Requisito, idRequirement,idUser, idDirector,username as Tutor, viewed, mentoringcol,commentTutor,commentDirector 
-                 FROM 
-                 (
-                        SELECT m.idMentoring, r.idCourse, r.name as Requisito,  m.idRequirement, m.idTutor, m.idDirector, m.idUser, m.viewed, m.mentoringcol, m.commentDirector, m.commentTutor
-                      FROM mentoring m 
-                      INNER JOIN requirements r ON m.idRequirement = r.idRequirements
-                       INNER JOIN course c ON r.idCourse = c.idCourse
-                 ) 
-                 AS RESULTS1 JOIN users u on idTutor = u.idUsers				
-             ) t1
-                     
-             INNER JOIN
-             (
-                 SELECT idMentoring as idMentoring2, username as Diretor
-                 FROM mentoring  INNER JOIN users u 
-                 on idDirector = u.idUsers
-             ) t2
-             
-             ON t1.idmentoring = t2.idMentoring2
-             
-             INNER JOIN
-             (
-                 SELECT idMentoring as idMentoring3, name as Formando
-                 FROM mentoring INNER JOIN users u 
-                 on idUser = u.idUsers
-             ) t3
-             
-             ON t1.idmentoring = t3.idMentoring3
-          
-          ) final 
+        $query = "SELECT idMentoring, idCourse, Requisito, idRequirement,idUser, idDirector,username as Tutor, viewed, mentoringcol,commentTutor,commentDirector 
+        FROM 
+        (
+             SELECT m.idMentoring, r.idCourse, r.name as Requisito,  m.idRequirement, m.idTutor, m.idDirector, m.idUser, m.viewed, m.mentoringcol, m.commentDirector, m.commentTutor
+             FROM mentoring m 
+             INNER JOIN requirements r ON m.idRequirement = r.idRequirements
+             INNER JOIN course c ON r.idCourse = c.idCourse
+        ) 
+        AS RESULTS1 JOIN users u on idTutor = u.idUsers";
+        //WHERE idCourse =" .$data['idCourse'];
+        
 
-        WHERE idCourse=".$data['idCourse'];
+        // $query = "
+        // SELECT * FROM (
+        //     SELECT * FROM 
+        //      (
+        //          SELECT idMentoring, idCourse, Requisito, idRequirement,idUser, idDirector,username as Tutor, viewed, mentoringcol,commentTutor,commentDirector 
+        //          FROM 
+        //          (
+        //                 SELECT m.idMentoring, r.idCourse, r.name as Requisito,  m.idRequirement, m.idTutor, m.idDirector, m.idUser, m.viewed, m.mentoringcol, m.commentDirector, m.commentTutor
+        //               FROM mentoring m 
+        //               INNER JOIN requirements r ON m.idRequirement = r.idRequirements
+        //                INNER JOIN course c ON r.idCourse = c.idCourse
+        //          ) 
+        //          AS RESULTS1 JOIN users u on idTutor = u.idUsers				
+        //      ) t1
+                     
+        //      INNER JOIN
+        //      (
+        //          SELECT idMentoring as idMentoring2, username as Diretor
+        //          FROM mentoring  INNER JOIN users u 
+        //          on idDirector = u.idUsers
+        //      ) t2
+             
+        //      ON t1.idmentoring = t2.idMentoring2
+             
+        //      INNER JOIN
+        //      (
+        //          SELECT idMentoring as idMentoring3, name as Formando
+        //          FROM mentoring INNER JOIN users u 
+        //          on idUser = u.idUsers
+        //      ) t3
+             
+        //      ON t1.idmentoring = t3.idMentoring3
+          
+        //   ) final 
+
+        // WHERE idCourse=".$data['idCourse'];
 
         $con       = new Database();
         $resultado = $con->get($query);
